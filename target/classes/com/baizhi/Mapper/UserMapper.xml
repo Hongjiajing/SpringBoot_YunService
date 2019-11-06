@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.UserDAO">
+    <insert id="add" parameterType="User">
+        insert into springsm_user (ID,NAME,AGE,SEX,STATUS) values (#{id},#{username},#{age},#{sex},#{status})
+    </insert>
+    <delete id="del">
+        delete from springsm_user where ID=#{id}
+    </delete>
+    <update id="edit" parameterType="User">
+        update springsm_user set NAME=#{username},AGE=#{age},SEX=#{sex} where ID=#{id}
+    </update>
+    <update id="editStatus" parameterType="User">
+        update springsm_user set STATUS=#{status} where ID=#{id}
+    </update>
+    <select id="queryAll" resultType="User">
+        select ID id,NAME username,AGE age,SEX sex,STATUS status from springsm_user limit #{page},#{rows}
+    </select>
+    <select id="dataNums" resultType="java.lang.Integer">
+        select count(*) from springsm_user
+    </select>
+    <select id="query" resultType="User">
+        select ID id,NAME username,AGE age,SEX sex,STATUS status from springsm_user where Name=#{username}
+    </select>
+</mapper>
